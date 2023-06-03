@@ -6,8 +6,8 @@ import { Controller, useForm } from "react-hook-form";
 import { Emitter } from "nanoevents";
 
 interface UserInterface {
+  username?: string;
   name?: string;
-  surname?: string;
   email?: string;
 }
 
@@ -37,8 +37,8 @@ const UserForm = ({ emitter }: EventEmitterInterface) => {
 
   const { handleSubmit, control } = useForm({
     values: {
+      username: user?.username || "",
       name: user?.name || "",
-      surname: user?.surname || "",
       email: user?.email || "",
     },
   });
@@ -79,14 +79,14 @@ const UserForm = ({ emitter }: EventEmitterInterface) => {
           <Grid container spacing={3}>
             <Grid item xs={12} md={6}>
               <Controller
-                name="name"
+                name="username"
                 control={control}
                 render={({ field }) => (
                   <TextField
                     {...field}
                     fullWidth
-                    id="user-name"
-                    label="Name"
+                    id="user-username"
+                    label="Username"
                     InputLabelProps={{ shrink: true }}
                     disabled={isLoggedIn}
                   />
@@ -95,14 +95,14 @@ const UserForm = ({ emitter }: EventEmitterInterface) => {
             </Grid>
             <Grid item xs={12} md={6}>
               <Controller
-                name="surname"
+                name="name"
                 control={control}
                 render={({ field }) => (
                   <TextField
                     {...field}
                     fullWidth
-                    id="user-surname"
-                    label="Surname"
+                    id="user-name"
+                    label="Name"
                     InputLabelProps={{ shrink: true }}
                     disabled={isLoggedIn}
                   />
